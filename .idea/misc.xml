@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/dev/AndroidStudioProjects/DNDSync/mobile/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1995" />
         <entry key="..\:/dev/AndroidStudioProjects/DNDSync/mobile/src/main/res/layout/activity_main.xml" value="0.371875" />
+        <entry key="..\:/dev/AndroidStudioProjects/DNDSync/mobile/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1995" />
+        <entry key="..\:/dev/AndroidStudioProjects/DNDSync/mobile/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1995" />
         <entry key="..\:/dev/AndroidStudioProjects/DNDSync/wear/src/main/res/layout/activity_main.xml" value="1.1023809523809525" />
+        <entry key="..\:/dev/AndroidStudioProjects/DNDSync/wear/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1995" />
+        <entry key="..\:/dev/AndroidStudioProjects/DNDSync/wear/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1995" />
         <entry key="..\:/dev/AndroidStudioProjects/DNDSync/wear/src/main/res/xml/accessibility_service_config.xml" value="0.9292929292929293" />
       </map>
     </option>
