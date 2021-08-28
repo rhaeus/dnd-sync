@@ -7,11 +7,11 @@ import android.graphics.Path;
 import android.util.DisplayMetrics;
 import android.view.accessibility.AccessibilityEvent;
 
-public class ExampleAccessService extends AccessibilityService {
+public class DNDSyncAccessService extends AccessibilityService {
 
-    private static ExampleAccessService instance;
+    private static DNDSyncAccessService instance;
 
-    public static ExampleAccessService getSharedInstance() {
+    public static DNDSyncAccessService getSharedInstance() {
         return instance;
     }
     @Override
@@ -19,10 +19,11 @@ public class ExampleAccessService extends AccessibilityService {
         instance = this;
     }
 
-//    @Override
-//    public boolean onUnbind(Intent intent) {
-//        instance = null;
-//    }
+    @Override
+    public boolean onUnbind(Intent intent) {
+        instance = null;
+        return super.onUnbind(intent);
+    }
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
@@ -54,7 +55,7 @@ public class ExampleAccessService extends AccessibilityService {
         boolean result = dispatchGesture(createClick(x, y), null, null);
     }
 
-    public void clickBedMode() {
+    public void clickIcon1_2() {
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         GestureDescription.Builder gestureBuilder = new GestureDescription.Builder();
         Path path = new Path();

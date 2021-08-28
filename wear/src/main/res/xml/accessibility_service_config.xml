@@ -4,4 +4,5 @@
     android:accessibilityFlags="flagDefault"
     android:canPerformGestures="true"
     android:canRetrieveWindowContent="true"
+    android:description="@string/access_desc"
     />

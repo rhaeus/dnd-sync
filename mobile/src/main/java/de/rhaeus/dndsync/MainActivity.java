@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Check if the notification policy access has been granted for the app.
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//        if (!mNotificationManager.isNotificationPolicyAccessGranted()) {
-//            Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
-//            startActivity(intent);
-//        }
+        if (!mNotificationManager.isNotificationPolicyAccessGranted()) {
+            Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
+            startActivity(intent);
+        }
 
         // detect capable nodes as they connect
         // This example uses a Java 8 Lambda. You can use named or anonymous classes.
@@ -60,15 +60,14 @@ public class MainActivity extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 Log.d(TAG, "onClick event ");
 
-//                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//                mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALARMS);
-//                int fil = mNotificationManager.getCurrentInterruptionFilter();
-//                Toast.makeText(getApplicationContext(), " current filter " + fil, Toast.LENGTH_LONG).show();
+                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                int dndState = mNotificationManager.getCurrentInterruptionFilter();
+                Toast.makeText(getApplicationContext(), " current filter " + dndState, Toast.LENGTH_LONG).show();
                 new Thread(new Runnable() {
                     public void run() {
                         // a potentially time consuming task
                         Log.d(TAG, "all Nodes: " + getNodes());
-                        sendSyncRequest();
+                        sendSyncRequest(dndState);
                     }
                 }).start();
 
@@ -147,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void sendSyncRequest() {
+    private void sendSyncRequest(int dndState) {
         // https://developer.android.com/training/wearables/data/messages
 
         // search node for sync
@@ -179,7 +178,9 @@ public class MainActivity extends AppCompatActivity {
 
         // send request
         if (syncNodeId != null) {
-            byte[] data = "syncdnd".getBytes();
+            byte[] data = new byte[2];
+            data[0] = 1; // bedtime mode
+            data[1] = (byte)dndState;
             Task<Integer> sendTask =
                     Wearable.getMessageClient(getApplicationContext()).sendMessage(
                             syncNodeId, DND_SYNC_MESSAGE_PATH, data);

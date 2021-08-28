@@ -3,6 +3,7 @@
     package="de.rhaeus.dndsync">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
     <uses-feature android:name="android.hardware.type.watch" />
 
@@ -36,9 +37,10 @@
         </activity>
 
         <service
-            android:name=".ExampleAccessService"
+            android:description="@string/access_desc"
+            android:name=".DNDSyncAccessService"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
-            android:label="TouchtestAccessService"
+            android:label="DNDSync"
             android:enabled="true"
             android:exported="false" >
             <intent-filter>
@@ -55,6 +57,16 @@
                 <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED" />
                 <data android:scheme="wear" android:host="*"
                     android:path="/wear-dnd-sync" />
+            </intent-filter>
+        </service>
+
+        <!-- A workaround used to be able to set the permissions we need. Is later disabled. -->
+        <service android:name=".DummyNotificationListener"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
         </service>
     </application>
