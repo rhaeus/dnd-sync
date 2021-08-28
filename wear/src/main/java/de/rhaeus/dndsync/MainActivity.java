@@ -29,13 +29,14 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 // Check if the notification policy access has been granted for the app.
                 NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                int fil = mNotificationManager.getCurrentInterruptionFilter();
-                Toast.makeText(getApplicationContext(), "DND permission filter: " + fil, Toast.LENGTH_SHORT).show();
-//                if (mNotificationManager.isNotificationPolicyAccessGranted()) {
-//                    Toast.makeText(getApplicationContext(), "DND permission ok!", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "DND permission missing!", Toast.LENGTH_SHORT).show();
-//                }
+//                int fil = mNotificationManager.getCurrentInterruptionFilter();
+//                Toast.makeText(getApplicationContext(), "DND permission filter: " + fil, Toast.LENGTH_SHORT).show();
+//                mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_PRIORITY);
+                if (mNotificationManager.isNotificationPolicyAccessGranted()) {
+                    Toast.makeText(getApplicationContext(), "DND permission ok!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "DND permission missing!", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -45,7 +46,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 serv = DNDSyncAccessService.getSharedInstance();
                 if (serv == null) {
-                    Toast.makeText(getApplicationContext(), "Accessibility service not connected!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Accessibility service NOT connected!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "Accessibility service connected!", Toast.LENGTH_SHORT).show();
                 }

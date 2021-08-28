@@ -20,7 +20,7 @@ public class DNDSyncListenerService extends WearableListenerService {
         }
 
         if (messageEvent.getPath().equalsIgnoreCase(DND_SYNC_MESSAGE_PATH)) {
-            Toast.makeText(getApplicationContext(), "DNDSync performs the action!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), "DNDSync performs the action!", Toast.LENGTH_SHORT).show();
 
             byte[] data = messageEvent.getData();
             // data[0] contains if dnd or bedtime mode
