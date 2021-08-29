@@ -2,7 +2,11 @@ package de.rhaeus.dndsync;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.os.Build;
+import android.os.Handler;
 import android.os.PowerManager;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -20,7 +24,8 @@ public class DNDSyncListenerService extends WearableListenerService {
         }
 
         if (messageEvent.getPath().equalsIgnoreCase(DND_SYNC_MESSAGE_PATH)) {
-//            Toast.makeText(getApplicationContext(), "DNDSync performs the action!", Toast.LENGTH_SHORT).show();
+
+            vibrate();
 
             byte[] data = messageEvent.getData();
             // data[0] contains if dnd or bedtime mode
@@ -63,12 +68,30 @@ public class DNDSyncListenerService extends WearableListenerService {
                 {
                     Log.d(TAG, "toggle bedtime mode");
                     if(currentDndState == NotificationManager.INTERRUPTION_FILTER_ALL && dndStatePhone != NotificationManager.INTERRUPTION_FILTER_ALL) {
-                        // watch dnd is off but phone dnd is not off
+                        // watch dnd is off but phone dnd is not off -> turn bedtime mode on
                         Log.d(TAG, "toggle bedtime mode case 1");
+                        // create a handler to post messages to the main thread
+                        Handler mHandler = new Handler(getMainLooper());
+                        mHandler.post(new Runnable() {
+                                          @Override
+                                          public void run() {
+                                              Toast.makeText(getApplicationContext(), "DNDSync enables bedtime mode", Toast.LENGTH_SHORT).show();
+                                          }
+                                      });
+
                         toggleBedtimeMode();
                     } else if (currentDndState != NotificationManager.INTERRUPTION_FILTER_ALL && dndStatePhone == NotificationManager.INTERRUPTION_FILTER_ALL) {
-                        // watch dnd is not off but phone dnd is off
+                        // watch dnd is not off but phone dnd is off -> turn bedtime mode off
                         Log.d(TAG, "toggle bedtime mode case 2");
+
+                        // create a handler to post messages to the main thread
+                        Handler mHandler = new Handler(getMainLooper());
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getApplicationContext(), "DNDSync disables bedtime mode", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         toggleBedtimeMode();
                     }
                     break;
@@ -100,7 +123,7 @@ public class DNDSyncListenerService extends WearableListenerService {
 
         // wait a bit before touch input to make sure screen is on
         try {
-            Thread.sleep(500);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -110,7 +133,7 @@ public class DNDSyncListenerService extends WearableListenerService {
 
         // wait for quick panel to open
         try {
-            Thread.sleep(500);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -120,7 +143,7 @@ public class DNDSyncListenerService extends WearableListenerService {
 
         // wait a bit
         try {
-            Thread.sleep(500);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -129,6 +152,12 @@ public class DNDSyncListenerService extends WearableListenerService {
         serv.goBack();
 
         wakeLock.release();
+    }
+
+    private void vibrate() {
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        v.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
+
     }
 
 }
