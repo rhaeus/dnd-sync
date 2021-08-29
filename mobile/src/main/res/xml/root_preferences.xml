@@ -1,0 +1,36 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:iconSpaceReserved="false">
+
+    <PreferenceCategory app:title="@string/permission_header"
+        app:iconSpaceReserved="false">
+        <Preference app:key="dnd_permission_key"
+            app:iconSpaceReserved="false"
+            app:title="@string/dnd_permission_title"
+            app:summary="summary" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/sync_header"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            app:key="dnd_sync_key"
+            app:iconSpaceReserved="false"
+            app:defaultValue="true"
+            app:title="@string/sync_title" />
+
+<!--        <Preference app:key="test"-->
+<!--            app:iconSpaceReserved="false"-->
+<!--            app:title="test"-->
+<!--             />-->
+
+<!--        <SwitchPreferenceCompat-->
+<!--            app:dependency="sync"-->
+<!--            app:key="attachment"-->
+<!--            app:summaryOff="@string/attachment_summary_off"-->
+<!--            app:summaryOn="@string/attachment_summary_on"-->
+<!--            app:title="@string/attachment_title" />-->
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

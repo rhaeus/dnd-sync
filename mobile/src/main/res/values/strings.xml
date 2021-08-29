@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">DNDSync</string>
+    <!-- Preference Titles -->
+    <string name="permission_header">Permissions</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Permission Preferences -->
+    <string name="dnd_permission_title">DND Permission</string>
+    <string name="dnd_permission_allowed">DND access granted</string>
+    <string name="dnd_permission_not_allowed">DND access denied</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync DND state with watch</string>
+
 </resources>

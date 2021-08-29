@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/dev/AndroidStudioProjects/DNDSync/mobile/src/main/res/drawable-v24/ic_launcher.xml" value="0.2175" />
         <entry key="..\:/dev/AndroidStudioProjects/DNDSync/mobile/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1995" />
         <entry key="..\:/dev/AndroidStudioProjects/DNDSync/mobile/src/main/res/layout/activity_main.xml" value="0.371875" />
+        <entry key="..\:/dev/AndroidStudioProjects/DNDSync/mobile/src/main/res/layout/settings_activity.xml" value="0.2864583333333333" />
         <entry key="..\:/dev/AndroidStudioProjects/DNDSync/mobile/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1995" />
         <entry key="..\:/dev/AndroidStudioProjects/DNDSync/mobile/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1995" />
+        <entry key="..\:/dev/AndroidStudioProjects/DNDSync/mobile/src/main/res/xml/root_preferences.xml" value="0.2864583333333333" />
         <entry key="..\:/dev/AndroidStudioProjects/DNDSync/wear/src/main/res/layout/activity_main.xml" value="0.67" />
         <entry key="..\:/dev/AndroidStudioProjects/DNDSync/wear/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1995" />
         <entry key="..\:/dev/AndroidStudioProjects/DNDSync/wear/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1995" />

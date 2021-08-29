@@ -16,6 +16,7 @@ public class DNDSyncListenerService extends WearableListenerService {
     private static final String TAG = "DNDSyncListenerService";
     private static final String DND_SYNC_MESSAGE_PATH = "/wear-dnd-sync";
 
+
     @Override
     public void onMessageReceived (MessageEvent messageEvent) {
         if (Log.isLoggable(TAG, Log.DEBUG)) {
