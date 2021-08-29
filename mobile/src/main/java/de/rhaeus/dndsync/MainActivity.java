@@ -38,41 +38,62 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Check if the notification policy access has been granted for the app.
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if (!mNotificationManager.isNotificationPolicyAccessGranted()) {
-            Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
-            startActivity(intent);
-        }
 
-        // detect capable nodes as they connect
-        // This example uses a Java 8 Lambda. You can use named or anonymous classes.
-        CapabilityClient.OnCapabilityChangedListener capabilityListener =
-                capInfo -> { Log.d(TAG, "updateDndSyncCapability triggered by listener"); updateDndSyncCapability(capInfo); };
-        Wearable.getCapabilityClient(getApplicationContext()).addListener(
-                capabilityListener,
-                DND_SYNC_CAPABILITY_NAME);
+        Button btnNotificationPerm = (Button) findViewById(R.id.btnNotificationPerm);
 
-        Button button = (Button) findViewById(R.id.button);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Log.d(TAG, "onClick event ");
-
-                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                int dndState = mNotificationManager.getCurrentInterruptionFilter();
-                Toast.makeText(getApplicationContext(), " current filter " + dndState, Toast.LENGTH_LONG).show();
-                new Thread(new Runnable() {
-                    public void run() {
-                        // a potentially time consuming task
-                        Log.d(TAG, "all Nodes: " + getNodes());
-                        sendSyncRequest(dndState);
-                    }
-                }).start();
-
-            }
+        btnNotificationPerm.setOnClickListener(new View.OnClickListener() {
+           public void onClick(View v) {
+               Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
+               startActivity(intent);
+           }
         });
+
+
+
+
+
+
+
+
+
+
+
+
+//        // Check if the notification policy access has been granted for the app.
+//        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//        if (!mNotificationManager.isNotificationPolicyAccessGranted()) {
+//            Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
+//            startActivity(intent);
+//        }
+//
+//        // detect capable nodes as they connect
+//        // This example uses a Java 8 Lambda. You can use named or anonymous classes.
+//        CapabilityClient.OnCapabilityChangedListener capabilityListener =
+//                capInfo -> { Log.d(TAG, "updateDndSyncCapability triggered by listener"); updateDndSyncCapability(capInfo); };
+//        Wearable.getCapabilityClient(getApplicationContext()).addListener(
+//                capabilityListener,
+//                DND_SYNC_CAPABILITY_NAME);
+//
+//        Button button = (Button) findViewById(R.id.btnCheckNotificationSrv);
+//
+//        button.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                // TODO Auto-generated method stub
+//                Log.d(TAG, "onClick event ");
+//
+//                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//                int dndState = mNotificationManager.getCurrentInterruptionFilter();
+//                Toast.makeText(getApplicationContext(), " current filter " + dndState, Toast.LENGTH_LONG).show();
+//                new Thread(new Runnable() {
+//                    public void run() {
+//                        // a potentially time consuming task
+//                        Log.d(TAG, "all Nodes: " + getNodes());
+//                        sendSyncRequest(dndState);
+//                    }
+//                }).start();
+//
+//            }
+//        });
     }
 
     private Collection<String> getNodes() {

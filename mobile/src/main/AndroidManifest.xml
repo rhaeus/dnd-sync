@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.rhaeus.dndsync">
 
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+<!--    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />-->
 
     <application
         android:allowBackup="true"
@@ -21,12 +21,20 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".DNDChangedReceiver"  android:exported="true">
+        <service android:name=".DNDNotificationService"
+            android:exported="true"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
-                <action android:name="android.app.action.INTERRUPTION_FILTER_CHANGED" />
-                <action android:name="android.media.RINGER_MODE_CHANGED" />
+                <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
-        </receiver>
+        </service>
+
+<!--        <receiver android:name=".DNDChangedReceiver"  android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.app.action.INTERRUPTION_FILTER_CHANGED" />-->
+<!--                <action android:name="android.media.RINGER_MODE_CHANGED" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
     </application>
 
 
