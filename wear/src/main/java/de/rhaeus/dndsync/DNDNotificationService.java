@@ -1,9 +1,9 @@
 package de.rhaeus.dndsync;
 
-import android.app.NotificationManager;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
+
+import android.content.ComponentName;
+import android.content.pm.PackageManager;
+import android.service.notification.NotificationListenerService;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -18,50 +18,65 @@ import com.google.android.gms.wearable.CapabilityInfo;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.Wearable;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-
-public class DNDChangedReceiver extends BroadcastReceiver{
-    private static final String TAG = "DNDChangedReceiver";
+public class DNDNotificationService extends NotificationListenerService {
+    private static final String TAG = "DNDNotificationService";
     private static final String DND_SYNC_CAPABILITY_NAME = "dnd_sync";
     private static final String DND_SYNC_MESSAGE_PATH = "/wear-dnd-sync";
 
-
     @Override
-    public void onReceive(Context context, Intent intent) {
-        if (intent.getAction().equals(NotificationManager.ACTION_INTERRUPTION_FILTER_CHANGED)) {
-            NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            int dndState = mNotificationManager.getCurrentInterruptionFilter();
-            Log.d(TAG, "Current DND state is: " + dndState);
-
-            new Thread(new Runnable() {
-                public void run() {
-                    sendSyncRequest(context, dndState);
-                }
-            }).start();
-        }
+    public void onListenerConnected() {
+        Log.d(TAG, "listener connected");
+//        // We don't want to run a background service so disable and stop it
+//        // to avoid running this service in the background
+//        disableServiceComponent();
+//        Log.i(TAG, "Disabling service");
+//
+//        try {
+//            stopSelf();
+//        } catch(SecurityException e) {
+//            Log.e(TAG, "Failed to stop service");
+//        }
+    }
+    private void disableServiceComponent() {
+        PackageManager p = getPackageManager();
+        ComponentName componentName = new ComponentName(this, DNDNotificationService.class);
+        p.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
     }
 
-    private void sendSyncRequest(Context context, int dndState) {
+
+
+    @Override
+    public void onInterruptionFilterChanged (int interruptionFilter) {
+        Log.d(TAG, "interruption filter changed to " + interruptionFilter);
+        // Unable to retrieve node with transcription capability
+//        Toast.makeText(getApplicationContext(), "interruption filter changed to " + interruptionFilter, Toast.LENGTH_LONG).show();
+
+        new Thread(new Runnable() {
+            public void run() {
+                sendDNDSync(interruptionFilter);
+            }
+        }).start();
+    }
+
+    private void sendDNDSync(int dndState) {
         // https://developer.android.com/training/wearables/data/messages
 
         // search nodes for sync
         CapabilityInfo capabilityInfo = null;
         try {
             capabilityInfo = Tasks.await(
-                    Wearable.getCapabilityClient(context).getCapability(
+                    Wearable.getCapabilityClient(this).getCapability(
                             DND_SYNC_CAPABILITY_NAME, CapabilityClient.FILTER_REACHABLE));
         } catch (ExecutionException e) {
             e.printStackTrace();
-            Log.e(TAG, "oh god1", e);
+            Log.e(TAG, "execution error while searching nodes", e);
             return;
         } catch (InterruptedException e) {
             e.printStackTrace();
-            Log.e(TAG, "oh god2", e);
+            Log.e(TAG, "interruption error while searching nodes", e);
             return;
         }
 
@@ -75,18 +90,18 @@ public class DNDChangedReceiver extends BroadcastReceiver{
             for (Node node : connectedNodes) {
                 if (node.isNearby()) {
                     byte[] data = new byte[2];
-                    data[0] = 1; // bedtime mode
+                    data[0] = 0; // dnd mode
                     data[1] = (byte) dndState;
                     Task<Integer> sendTask =
-                            Wearable.getMessageClient(context).sendMessage(node.getId(), DND_SYNC_MESSAGE_PATH, data);
-                    // You can add success and/or failure listeners,
-                    // Or you can call Tasks.await() and catch ExecutionException
+                            Wearable.getMessageClient(this).sendMessage(node.getId(), DND_SYNC_MESSAGE_PATH, data);
+
                     sendTask.addOnSuccessListener(new OnSuccessListener<Integer>() {
                         @Override
                         public void onSuccess(Integer integer) {
                             Log.d(TAG, "send successful!");
                         }
                     });
+
                     sendTask.addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
@@ -97,5 +112,4 @@ public class DNDChangedReceiver extends BroadcastReceiver{
             }
         }
     }
-
 }

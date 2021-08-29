@@ -8,28 +8,44 @@
     tools:context=".MainActivity"
     tools:deviceIds="wear">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/inner_frame_layout_padding"
-        app:layout_boxedEdges="all">
 
-        <LinearLayout
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btnAccCheck"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Accessibility Service check" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btnDndCheck"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="DND permission check" />
-        </LinearLayout>
-    </FrameLayout>
+                <Button
+                    android:id="@+id/btnAccCheck"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Accessibility Service check" />
+
+                <Button
+                    android:id="@+id/btnDndCheck"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="DND permission check" />
+
+                <Button
+                    android:id="@+id/btnEnableDND"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Enable DND" />
+
+                <Button
+                    android:id="@+id/btnDisableDND"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Disable DND" />
+            </LinearLayout>
+
+
+        </ScrollView>
+
 </androidx.wear.widget.BoxInsetLayout>

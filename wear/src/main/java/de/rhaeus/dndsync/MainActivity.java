@@ -3,6 +3,7 @@ package de.rhaeus.dndsync;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,11 +24,19 @@ public class MainActivity extends Activity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+//        Intent intent = new Intent(this, DummyNotificationListener.class); // fails because of permission
+//        startService(intent);
+
 
         Button btnDndCheck = (Button) findViewById(R.id.btnDndCheck);
         btnDndCheck.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Check if the notification policy access has been granted for the app.
+
+//                Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS); //fails
+//                startActivity(intent);
+
+
+//                // Check if the notification policy access has been granted for the app.
                 NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 //                int fil = mNotificationManager.getCurrentInterruptionFilter();
 //                Toast.makeText(getApplicationContext(), "DND permission filter: " + fil, Toast.LENGTH_SHORT).show();
@@ -52,6 +61,23 @@ public class MainActivity extends Activity {
                 }
             }
         });
+
+        Button btnEnableDND = (Button) findViewById(R.id.btnEnableDND);
+        btnEnableDND.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_PRIORITY);
+            }
+        });
+        Button btnDisableDND = (Button) findViewById(R.id.btnDisableDND);
+        btnDisableDND.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALL);
+            }
+        });
+
+
 
 
 //

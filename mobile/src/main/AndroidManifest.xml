@@ -29,12 +29,16 @@
             </intent-filter>
         </service>
 
-<!--        <receiver android:name=".DNDChangedReceiver"  android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.app.action.INTERRUPTION_FILTER_CHANGED" />-->
-<!--                <action android:name="android.media.RINGER_MODE_CHANGED" />-->
-<!--            </intent-filter>-->
-<!--        </receiver>-->
+        <service android:name=".DNDSyncListenerService"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED" />
+                <data android:scheme="wear" android:host="*"
+                    android:path="/wear-dnd-sync" />
+            </intent-filter>
+        </service>
+
     </application>
 
 
