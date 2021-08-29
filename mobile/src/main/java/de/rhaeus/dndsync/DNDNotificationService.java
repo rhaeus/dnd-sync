@@ -82,9 +82,8 @@ public class DNDNotificationService extends NotificationListenerService {
         } else {
             for (Node node : connectedNodes) {
                 if (node.isNearby()) {
-                    byte[] data = new byte[2];
-                    data[0] = 1; // bedtime mode
-                    data[1] = (byte) dndState;
+                    byte[] data = new byte[1];
+                    data[0] = (byte) dndState;
                     Task<Integer> sendTask =
                             Wearable.getMessageClient(this).sendMessage(node.getId(), DND_SYNC_MESSAGE_PATH, data);
 

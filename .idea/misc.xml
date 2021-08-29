@@ -11,9 +11,13 @@
         <entry key="..\:/dev/AndroidStudioProjects/DNDSync/mobile/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1995" />
         <entry key="..\:/dev/AndroidStudioProjects/DNDSync/mobile/src/main/res/xml/root_preferences.xml" value="0.2864583333333333" />
         <entry key="..\:/dev/AndroidStudioProjects/DNDSync/wear/src/main/res/layout/activity_main.xml" value="0.67" />
+        <entry key="..\:/dev/AndroidStudioProjects/DNDSync/wear/src/main/res/layout/fragment_blank.xml" value="0.8833333333333333" />
+        <entry key="..\:/dev/AndroidStudioProjects/DNDSync/wear/src/main/res/layout/settings_activity.xml" value="0.8833333333333333" />
         <entry key="..\:/dev/AndroidStudioProjects/DNDSync/wear/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1995" />
         <entry key="..\:/dev/AndroidStudioProjects/DNDSync/wear/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1995" />
         <entry key="..\:/dev/AndroidStudioProjects/DNDSync/wear/src/main/res/xml/accessibility_service_config.xml" value="0.9292929292929293" />
+        <entry key="..\:/dev/AndroidStudioProjects/DNDSync/wear/src/main/res/xml/preferences.xml" value="0.8833333333333333" />
+        <entry key="..\:/dev/AndroidStudioProjects/DNDSync/wear/src/main/res/xml/root_preferences.xml" value="0.8833333333333333" />
       </map>
     </option>
   </component>

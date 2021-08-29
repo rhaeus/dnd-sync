@@ -1,0 +1,55 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:iconSpaceReserved="false">
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/permission_header">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="dnd_permission_key"
+            app:summary="summary"
+            app:title="@string/dnd_permission_title" />
+
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="acc_permission_key"
+            app:summary="summary"
+            app:title="@string/acc_permission_title" />
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/sync_header">
+
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
+            app:key="dnd_sync_key"
+            app:title="Sync DND"
+            app:summaryOn="Syncs DND state to phone"
+            app:summaryOff="Doesn't sync DND state to phone"
+
+            />
+
+        <!--        <Preference app:key="test"-->
+        <!--            app:iconSpaceReserved="false"-->
+        <!--            app:title="test"-->
+        <!--             />-->
+
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="bedtime_key"
+            app:summaryOn="Toggles Bedtime mode on DND sync request using Accessibility Service"
+            app:summaryOff="Enabling this will toggles Bedtime mode on DND sync request using Accessibility Service"
+            app:title="@string/bedtime_title" />
+
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="dummy" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -10,6 +10,6 @@
     <string name="dnd_permission_not_allowed">DND access denied</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title">Sync DND state with watch</string>
+    <string name="sync_title">Sync DND state to watch</string>
 
 </resources>

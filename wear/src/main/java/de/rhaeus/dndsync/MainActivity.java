@@ -24,58 +24,60 @@ public class MainActivity extends Activity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
 //        Intent intent = new Intent(this, DummyNotificationListener.class); // fails because of permission
 //        startService(intent);
 
 
-        Button btnDndCheck = (Button) findViewById(R.id.btnDndCheck);
-        btnDndCheck.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-//                Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS); //fails
-//                startActivity(intent);
-
-
-//                // Check if the notification policy access has been granted for the app.
-                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//                int fil = mNotificationManager.getCurrentInterruptionFilter();
-//                Toast.makeText(getApplicationContext(), "DND permission filter: " + fil, Toast.LENGTH_SHORT).show();
+//        Button btnDndCheck = (Button) findViewById(R.id.btnDndCheck);
+//        btnDndCheck.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//
+////                Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS); //fails
+////                startActivity(intent);
+//
+//
+////                // Check if the notification policy access has been granted for the app.
+//                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+////                int fil = mNotificationManager.getCurrentInterruptionFilter();
+////                Toast.makeText(getApplicationContext(), "DND permission filter: " + fil, Toast.LENGTH_SHORT).show();
+////                mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_PRIORITY);
+//                if (mNotificationManager.isNotificationPolicyAccessGranted()) {
+//                    Toast.makeText(getApplicationContext(), "DND permission ok!", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "DND permission missing!", Toast.LENGTH_SHORT).show();
+//                }
+//
+//            }
+//        });
+//
+//        Button btnAccCheck = (Button) findViewById(R.id.btnAccCheck);
+//        btnAccCheck.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                serv = DNDSyncAccessService.getSharedInstance();
+//                if (serv == null) {
+//                    Toast.makeText(getApplicationContext(), "Accessibility service NOT connected!", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "Accessibility service connected!", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//
+//        Button btnEnableDND = (Button) findViewById(R.id.btnEnableDND);
+//        btnEnableDND.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 //                mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_PRIORITY);
-                if (mNotificationManager.isNotificationPolicyAccessGranted()) {
-                    Toast.makeText(getApplicationContext(), "DND permission ok!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "DND permission missing!", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
-        Button btnAccCheck = (Button) findViewById(R.id.btnAccCheck);
-        btnAccCheck.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                serv = DNDSyncAccessService.getSharedInstance();
-                if (serv == null) {
-                    Toast.makeText(getApplicationContext(), "Accessibility service NOT connected!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Accessibility service connected!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        Button btnEnableDND = (Button) findViewById(R.id.btnEnableDND);
-        btnEnableDND.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_PRIORITY);
-            }
-        });
-        Button btnDisableDND = (Button) findViewById(R.id.btnDisableDND);
-        btnDisableDND.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALL);
-            }
-        });
+//            }
+//        });
+//        Button btnDisableDND = (Button) findViewById(R.id.btnDisableDND);
+//        btnDisableDND.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//                mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALL);
+//            }
+//        });
 
 
 

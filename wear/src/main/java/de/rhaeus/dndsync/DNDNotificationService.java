@@ -2,12 +2,14 @@ package de.rhaeus.dndsync;
 
 
 import android.content.ComponentName;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.service.notification.NotificationListenerService;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -54,11 +56,15 @@ public class DNDNotificationService extends NotificationListenerService {
         // Unable to retrieve node with transcription capability
 //        Toast.makeText(getApplicationContext(), "interruption filter changed to " + interruptionFilter, Toast.LENGTH_LONG).show();
 
-        new Thread(new Runnable() {
-            public void run() {
-                sendDNDSync(interruptionFilter);
-            }
-        }).start();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        Boolean syncDnd = prefs.getBoolean("dnd_sync_key", true);
+        if(syncDnd) {
+            new Thread(new Runnable() {
+                public void run() {
+                    sendDNDSync(interruptionFilter);
+                }
+            }).start();
+        }
     }
 
     private void sendDNDSync(int dndState) {
@@ -90,8 +96,7 @@ public class DNDNotificationService extends NotificationListenerService {
             for (Node node : connectedNodes) {
                 if (node.isNearby()) {
                     byte[] data = new byte[2];
-                    data[0] = 0; // dnd mode
-                    data[1] = (byte) dndState;
+                    data[0] = (byte) dndState;
                     Task<Integer> sendTask =
                             Wearable.getMessageClient(this).sendMessage(node.getId(), DND_SYNC_MESSAGE_PATH, data);
 

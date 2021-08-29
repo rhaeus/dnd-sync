@@ -5,4 +5,23 @@
     values-round/strings.xml for round devices.
     -->
     <string name="access_desc">Allows DNDSync to perform touch actions in order to enable Bedtime mode from Quick Settings panel.</string>
+
+    <!-- Preference Titles -->
+    <string name="permission_header">Permissions</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Permission Preferences -->
+    <string name="dnd_permission_title">DND Permission</string>
+    <string name="dnd_permission_allowed">DND access granted</string>
+    <string name="dnd_permission_not_allowed">DND access denied</string>
+
+    <!-- Permission Preferences -->
+    <string name="acc_permission_title">Accessibility Service</string>
+    <string name="acc_permission_allowed">connected</string>
+    <string name="acc_permission_not_allowed">not connected</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync DND</string>
+    <string name="bedtime_title">Bedtime Mode</string>
+
 </resources>

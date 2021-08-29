@@ -26,18 +26,13 @@ public class DNDSyncListenerService extends WearableListenerService {
         if (messageEvent.getPath().equalsIgnoreCase(DND_SYNC_MESSAGE_PATH)) {
 
             byte[] data = messageEvent.getData();
-            // data[0] contains if dnd or bedtime mode
-            // 0 = dnd
-            // 1 = bedtime mode
-            // data[1] contains dnd mode of phone
+            // data[0] contains dnd mode of phone
             // 0 = INTERRUPTION_FILTER_UNKNOWN
             // 1 = INTERRUPTION_FILTER_ALL (all notifications pass)
             // 2 = INTERRUPTION_FILTER_PRIORITY
             // 3 = INTERRUPTION_FILTER_NONE (no notification passes)
             // 4 = INTERRUPTION_FILTER_ALARMS
-            byte mode = data[0];
-            Log.d(TAG, "mode: " + mode);
-            byte dndStatePhone = data[1];
+            byte dndStatePhone = data[0];
             Log.d(TAG, "dndStatePhone: " + dndStatePhone);
 
             // get dnd state
@@ -54,15 +49,12 @@ public class DNDSyncListenerService extends WearableListenerService {
             byte currentDndState = (byte) filterState;
             Log.d(TAG, "currentDndState: " + currentDndState);
 
-            if (mode == 0) { //dnd
-                if (dndStatePhone != currentDndState) {
-                    mNotificationManager.setInterruptionFilter(dndStatePhone);
+            if (dndStatePhone != currentDndState) {
+                mNotificationManager.setInterruptionFilter(dndStatePhone);
 //                    Toast.makeText(getApplicationContext(), "DND set to " + dndStatePhone, Toast.LENGTH_LONG).show();
-                    Log.d(TAG, "DND set to " + dndStatePhone);
-                }
-            } else {
-                Log.d(TAG, "DNDSync mode went wrong: " + mode);
+                Log.d(TAG, "DND set to " + dndStatePhone);
             }
+
         } else {
             super.onMessageReceived(messageEvent);
         }
