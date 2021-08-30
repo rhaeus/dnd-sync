@@ -11,7 +11,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreferenceCompat;
 
-public class SettingsFragment extends PreferenceFragmentCompat {
+public class MainFragment extends PreferenceFragmentCompat {
     private Preference dndPref;
     private Preference accPref;
     private SwitchPreferenceCompat bedtimePref;

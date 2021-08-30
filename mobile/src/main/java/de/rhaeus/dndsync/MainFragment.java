@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
-public class SettingsFragment extends PreferenceFragmentCompat {
+public class MainFragment extends PreferenceFragmentCompat {
     private Preference dndPref;
     private Preference test;
 

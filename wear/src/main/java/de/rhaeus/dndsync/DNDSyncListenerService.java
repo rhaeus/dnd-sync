@@ -29,7 +29,7 @@ public class DNDSyncListenerService extends WearableListenerService {
 
         if (messageEvent.getPath().equalsIgnoreCase(DND_SYNC_MESSAGE_PATH)) {
 
-            Boolean vibrate = prefs.getBoolean("vibrate_key", false);
+            boolean vibrate = prefs.getBoolean("vibrate_key", false);
             if (vibrate) {
                 vibrate();
             }
@@ -55,7 +55,7 @@ public class DNDSyncListenerService extends WearableListenerService {
             Log.d(TAG, "currentDndState: " + currentDndState);
 
             if (dndStatePhone != currentDndState) {
-                Boolean useBedtimeMode = prefs.getBoolean("bedtime_key", true);
+                boolean useBedtimeMode = prefs.getBoolean("bedtime_key", true);
                 if (useBedtimeMode) {
                     toggleBedtimeMode();
                 }
