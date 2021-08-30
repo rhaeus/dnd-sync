@@ -37,9 +37,6 @@
             app:summaryOff="@string/vibrate_summary_off"
             />
 
-<!--        <Preference-->
-<!--            app:iconSpaceReserved="false"-->
-<!--            app:key="dummy" />-->
     </PreferenceCategory>
 
     <PreferenceCategory

@@ -1,10 +1,9 @@
 <resources>
     <string name="app_name">DNDSync</string>
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
+
     <string name="access_desc">Allows DNDSync to perform touch actions in order to enable Bedtime mode from Quick Settings panel.</string>
+    <string name="acc_not_connected">DNDSync can\'t toggle bedtime mode since Accessibility Service is not connected!</string>
+    <string name="bedtime_toggle">DNDSync toggles Bedtime Mode.</string>
 
     <!-- Preference Titles -->
     <string name="permission_header">Permissions</string>

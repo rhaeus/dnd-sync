@@ -63,7 +63,9 @@
                     android:path="/wear-dnd-sync"
                     android:scheme="wear" />
             </intent-filter>
-        </service> <!-- grant permission with adb shell cmd notification allow_listener de.rhaeus.dndsync/de.rhaeus.dndsync.DNDNotificationService -->
+        </service>
+
+        <!-- grant permission with: adb shell cmd notification allow_listener de.rhaeus.dndsync/de.rhaeus.dndsync.DNDNotificationService -->
         <service
             android:name=".DNDNotificationService"
             android:enabled="true"

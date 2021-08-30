@@ -1,3 +1,38 @@
 <resources>
+    <string name="app_name">DNDSync</string>
 
+    <string name="access_desc">Allows DNDSync to perform touch actions in order to enable Bedtime mode from Quick Settings panel.</string>
+    <string name="acc_not_connected">DNDSync can\'t toggle bedtime mode since Accessibility Service is not connected!</string>
+    <string name="bedtime_toggle">DNDSync toggles Bedtime Mode.</string>
+
+    <!-- Preference Titles -->
+    <string name="permission_header">Permissions</string>
+    <string name="sync_header">Sync</string>
+    <string name="other_header">Other</string>
+
+    <!-- Permission Preferences -->
+    <string name="dnd_permission_title">DND Permission</string>
+    <string name="dnd_permission_allowed">DND access granted</string>
+    <string name="dnd_permission_not_allowed">DND access denied</string>
+
+    <!-- Permission Preferences -->
+    <string name="acc_permission_title">Accessibility Service</string>
+    <string name="acc_permission_allowed">connected</string>
+    <string name="acc_permission_not_allowed">not connected</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync DND</string>
+    <string name="sync_summary_off">Sync DND state to phone</string>
+    <string name="sync_summary_on">Sync DND state to phone</string>
+
+    <string name="bedtime_title">Bedtime Mode</string>
+    <string name="bedtime_summary_off">Use Bedtime mode on DND sync (requires Accessibility Service)</string>
+    <string name="bedtime_summary_on">Use Bedtime mode on DND sync</string>
+
+
+    <!-- Other Preferences -->
+    <!-- Vibrate -->
+    <string name="vibrate_title">Vibration</string>
+    <string name="vibrate_summary_off">Vibrate on sync request</string>
+    <string name="vibrate_summary_on">Vibrate on sync request</string>
 </resources>

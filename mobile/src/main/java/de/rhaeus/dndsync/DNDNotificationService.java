@@ -44,7 +44,7 @@ public class DNDNotificationService extends NotificationListenerService {
         Log.d(TAG, "interruption filter changed to " + interruptionFilter);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        Boolean syncDnd = prefs.getBoolean("dnd_sync_key", true);
+        boolean syncDnd = prefs.getBoolean("dnd_sync_key", true);
         if(syncDnd) {
             new Thread(new Runnable() {
                 public void run() {
@@ -90,14 +90,14 @@ public class DNDNotificationService extends NotificationListenerService {
                     sendTask.addOnSuccessListener(new OnSuccessListener<Integer>() {
                         @Override
                         public void onSuccess(Integer integer) {
-                            Log.d(TAG, "send successful!");
+                            Log.d(TAG, "send successful! Receiver node id: " + node.getId());
                         }
                     });
 
                     sendTask.addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.d(TAG, "send failed!");
+                            Log.d(TAG, "send failed! Receiver node id: " + node.getId());
                         }
                     });
                 }

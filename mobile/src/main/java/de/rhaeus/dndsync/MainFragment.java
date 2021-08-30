@@ -11,20 +11,14 @@ import androidx.preference.PreferenceFragmentCompat;
 
 public class MainFragment extends PreferenceFragmentCompat {
     private Preference dndPref;
-    private Preference test;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey);
 
         dndPref = findPreference("dnd_permission_key");
-//        test = findPreference("test");
-//        test.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-//            public boolean onPreferenceClick(Preference preference) {
-//
-//                return true;
-//            }
-//        });
+
+        assert(dndPref != null);
 
         dndPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             public boolean onPreferenceClick(Preference preference) {
@@ -37,7 +31,6 @@ public class MainFragment extends PreferenceFragmentCompat {
             }
         });
         checkDNDPermission();
-
     }
 
     private boolean checkDNDPermission() {

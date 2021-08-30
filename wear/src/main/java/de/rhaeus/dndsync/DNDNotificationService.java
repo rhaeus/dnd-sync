@@ -28,9 +28,14 @@ public class DNDNotificationService extends NotificationListenerService {
     private static final String DND_SYNC_CAPABILITY_NAME = "dnd_sync";
     private static final String DND_SYNC_MESSAGE_PATH = "/wear-dnd-sync";
 
+    public static boolean running = false;
+
     @Override
     public void onListenerConnected() {
         Log.d(TAG, "listener connected");
+        running = true;
+
+        //TODO enable/disable service based on app setting to save battery
 //        // We don't want to run a background service so disable and stop it
 //        // to avoid running this service in the background
 //        disableServiceComponent();
@@ -42,22 +47,25 @@ public class DNDNotificationService extends NotificationListenerService {
 //            Log.e(TAG, "Failed to stop service");
 //        }
     }
-    private void disableServiceComponent() {
-        PackageManager p = getPackageManager();
-        ComponentName componentName = new ComponentName(this, DNDNotificationService.class);
-        p.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
-    }
+//    private void disableServiceComponent() {
+//        PackageManager p = getPackageManager();
+//        ComponentName componentName = new ComponentName(this, DNDNotificationService.class);
+//        p.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+//    }
 
+    @Override
+    public void onListenerDisconnected() {
+        Log.d(TAG, "listener disconnected");
+        running = false;
+    }
 
 
     @Override
     public void onInterruptionFilterChanged (int interruptionFilter) {
         Log.d(TAG, "interruption filter changed to " + interruptionFilter);
-        // Unable to retrieve node with transcription capability
-//        Toast.makeText(getApplicationContext(), "interruption filter changed to " + interruptionFilter, Toast.LENGTH_LONG).show();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        Boolean syncDnd = prefs.getBoolean("dnd_sync_key", true);
+        boolean syncDnd = prefs.getBoolean("dnd_sync_key", true);
         if(syncDnd) {
             new Thread(new Runnable() {
                 public void run() {
@@ -103,14 +111,14 @@ public class DNDNotificationService extends NotificationListenerService {
                     sendTask.addOnSuccessListener(new OnSuccessListener<Integer>() {
                         @Override
                         public void onSuccess(Integer integer) {
-                            Log.d(TAG, "send successful!");
+                            Log.d(TAG, "send successful! Receiver node id: " + node.getId());
                         }
                     });
 
                     sendTask.addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.d(TAG, "send failed!");
+                            Log.d(TAG, "send failed! Receiver node id: " + node.getId());
                         }
                     });
                 }

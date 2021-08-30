@@ -9,6 +9,8 @@ import android.os.Vibrator;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.WearableListenerService;
 
@@ -18,12 +20,11 @@ public class DNDSyncListenerService extends WearableListenerService {
 
 
     @Override
-    public void onMessageReceived (MessageEvent messageEvent) {
-        if (Log.isLoggable(TAG, Log.DEBUG)) {
-            Log.d(TAG, "onMessageReceived: " + messageEvent);
-        }
+    public void onMessageReceived (@NonNull MessageEvent messageEvent) {
+        Log.d(TAG, "onMessageReceived: " + messageEvent);
 
         if (messageEvent.getPath().equalsIgnoreCase(DND_SYNC_MESSAGE_PATH)) {
+            Log.d(TAG, "received path: " + DND_SYNC_MESSAGE_PATH);
 
             byte[] data = messageEvent.getData();
             // data[0] contains dnd mode of phone
@@ -37,10 +38,6 @@ public class DNDSyncListenerService extends WearableListenerService {
 
             // get dnd state
             NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//            if (!mNotificationManager.isNotificationPolicyAccessGranted()) {
-//                Toast.makeText(getApplicationContext(), "DNDSync missing DND permission!", Toast.LENGTH_SHORT).show();
-//                Log.d(TAG, "DNDSync missing DND permission!");
-//            }
 
             int filterState = mNotificationManager.getCurrentInterruptionFilter();
             if (filterState < 0 || filterState > 4) {
@@ -50,9 +47,13 @@ public class DNDSyncListenerService extends WearableListenerService {
             Log.d(TAG, "currentDndState: " + currentDndState);
 
             if (dndStatePhone != currentDndState) {
-                mNotificationManager.setInterruptionFilter(dndStatePhone);
-//                    Toast.makeText(getApplicationContext(), "DND set to " + dndStatePhone, Toast.LENGTH_LONG).show();
-                Log.d(TAG, "DND set to " + dndStatePhone);
+                Log.d(TAG, "dndStatePhone != currentDndState: " + dndStatePhone + " != " + currentDndState);
+                if (mNotificationManager.isNotificationPolicyAccessGranted()) {
+                    mNotificationManager.setInterruptionFilter(dndStatePhone);
+                    Log.d(TAG, "DND set to " + dndStatePhone);
+                } else {
+                Log.d(TAG, "attempting to set DND but access not granted");
+                }
             }
 
         } else {

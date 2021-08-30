@@ -24,13 +24,7 @@ public class MainFragment extends PreferenceFragmentCompat {
         dndPref = findPreference("dnd_permission_key");
         accPref = findPreference("acc_permission_key");
         bedtimePref = (SwitchPreferenceCompat) findPreference("bedtime_key");
-//        test = findPreference("test");
-//        test.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-//            public boolean onPreferenceClick(Preference preference) {
-//
-//                return true;
-//            }
-//        });
+
 
         dndPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             public boolean onPreferenceClick(Preference preference) {
