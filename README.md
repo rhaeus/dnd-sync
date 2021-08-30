@@ -55,4 +55,4 @@ You can enable this by enabling the _Bedtime Mode_ Setting in the App.
 # Feedback
 Feel free to contact me for questions, feature ideas or bugs and I will see if I can do something about it
 
-email: rhaeus-dev@gmail.com
+email: rhaeus.dev@gmail.com
