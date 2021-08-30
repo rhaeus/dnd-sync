@@ -3,25 +3,6 @@
 
     <PreferenceCategory
         app:iconSpaceReserved="false"
-        app:title="@string/permission_header">
-
-        <Preference
-            app:iconSpaceReserved="false"
-            app:key="dnd_permission_key"
-            app:summary="summary"
-            app:title="@string/dnd_permission_title" />
-
-        <Preference
-            app:iconSpaceReserved="false"
-            app:key="acc_permission_key"
-            app:summary="summary"
-            app:title="@string/acc_permission_title" />
-
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        app:iconSpaceReserved="false"
         app:title="@string/sync_header">
 
         <SwitchPreferenceCompat
@@ -31,13 +12,7 @@
             app:title="Sync DND"
             app:summaryOn="@string/sync_summary_on"
             app:summaryOff="@string/sync_summary_off"
-
             />
-
-        <!--        <Preference app:key="test"-->
-        <!--            app:iconSpaceReserved="false"-->
-        <!--            app:title="test"-->
-        <!--             />-->
 
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
@@ -46,8 +21,6 @@
             app:summaryOn="@string/bedtime_summary_on"
             app:summaryOff="@string/bedtime_summary_off"
             app:title="@string/bedtime_title" />
-
-
 
     </PreferenceCategory>
 
@@ -67,6 +40,24 @@
 <!--        <Preference-->
 <!--            app:iconSpaceReserved="false"-->
 <!--            app:key="dummy" />-->
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/permission_header">
+
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="dnd_permission_key"
+            app:summary="summary"
+            app:title="@string/dnd_permission_title" />
+
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="acc_permission_key"
+            app:summary="summary"
+            app:title="@string/acc_permission_title" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
