@@ -9,6 +9,7 @@
     <!-- Preference Titles -->
     <string name="permission_header">Permissions</string>
     <string name="sync_header">Sync</string>
+    <string name="other_header">Other</string>
 
     <!-- Permission Preferences -->
     <string name="dnd_permission_title">DND Permission</string>
@@ -22,6 +23,18 @@
 
     <!-- Sync Preferences -->
     <string name="sync_title">Sync DND</string>
+    <string name="sync_summary_off">Sync DND state to phone</string>
+    <string name="sync_summary_on">Sync DND state to phone</string>
+
     <string name="bedtime_title">Bedtime Mode</string>
+    <string name="bedtime_summary_off">Use Bedtime mode on DND sync (requires Accessibility Service)</string>
+    <string name="bedtime_summary_on">Use Bedtime mode on DND sync</string>
+
+
+    <!-- Other Preferences -->
+    <!-- Vibrate -->
+    <string name="vibrate_title">Vibration</string>
+    <string name="vibrate_summary_off">Vibrate on sync request</string>
+    <string name="vibrate_summary_on">Vibrate on sync request</string>
 
 </resources>

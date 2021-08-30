@@ -9,10 +9,13 @@ import android.widget.Toast;
 
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.SwitchPreferenceCompat;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
     private Preference dndPref;
     private Preference accPref;
+    private SwitchPreferenceCompat bedtimePref;
+
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -20,6 +23,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         dndPref = findPreference("dnd_permission_key");
         accPref = findPreference("acc_permission_key");
+        bedtimePref = (SwitchPreferenceCompat) findPreference("bedtime_key");
 //        test = findPreference("test");
 //        test.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 //            public boolean onPreferenceClick(Preference preference) {
@@ -56,8 +60,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         boolean connected = serv != null;
         if (connected) {
             accPref.setSummary(R.string.acc_permission_allowed);
+            bedtimePref.setEnabled(true);
         } else {
             accPref.setSummary(R.string.acc_permission_not_allowed);
+            bedtimePref.setEnabled(false);
+            bedtimePref.setChecked(false);
         }
         return connected;
     }

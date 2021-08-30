@@ -29,8 +29,8 @@
             app:iconSpaceReserved="false"
             app:key="dnd_sync_key"
             app:title="Sync DND"
-            app:summaryOn="Syncs DND state to phone"
-            app:summaryOff="Doesn't sync DND state to phone"
+            app:summaryOn="@string/sync_summary_on"
+            app:summaryOff="@string/sync_summary_off"
 
             />
 
@@ -42,14 +42,31 @@
         <SwitchPreferenceCompat
             app:iconSpaceReserved="false"
             app:key="bedtime_key"
-            app:summaryOn="Toggles Bedtime mode on DND sync request using Accessibility Service"
-            app:summaryOff="Enabling this will toggles Bedtime mode on DND sync request using Accessibility Service"
+            app:defaultValue="false"
+            app:summaryOn="@string/bedtime_summary_on"
+            app:summaryOff="@string/bedtime_summary_off"
             app:title="@string/bedtime_title" />
+
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/other_header">
+
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="vibrate_key"
+            app:title="@string/vibrate_title"
+            app:summaryOn="@string/vibrate_summary_on"
+            app:summaryOff="@string/vibrate_summary_off"
+            />
 
         <Preference
             app:iconSpaceReserved="false"
             app:key="dummy" />
-
     </PreferenceCategory>
 
 </PreferenceScreen>

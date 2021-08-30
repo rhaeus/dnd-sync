@@ -25,10 +25,14 @@ public class DNDSyncListenerService extends WearableListenerService {
         if (Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, "onMessageReceived: " + messageEvent);
         }
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         if (messageEvent.getPath().equalsIgnoreCase(DND_SYNC_MESSAGE_PATH)) {
 
-            vibrate();
+            Boolean vibrate = prefs.getBoolean("vibrate_key", false);
+            if (vibrate) {
+                vibrate();
+            }
 
             byte[] data = messageEvent.getData();
             // data[0] contains dnd mode of phone
@@ -51,14 +55,17 @@ public class DNDSyncListenerService extends WearableListenerService {
             Log.d(TAG, "currentDndState: " + currentDndState);
 
             if (dndStatePhone != currentDndState) {
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
                 Boolean useBedtimeMode = prefs.getBoolean("bedtime_key", true);
                 if (useBedtimeMode) {
                     toggleBedtimeMode();
                 }
                 // set DND anyways, also in case bedtime toggle does not work to have at least DND
-                mNotificationManager.setInterruptionFilter(dndStatePhone);
-                Log.d(TAG, "DND set to " + dndStatePhone);
+                if (mNotificationManager.isNotificationPolicyAccessGranted()) {
+                    mNotificationManager.setInterruptionFilter(dndStatePhone);
+                    Log.d(TAG, "DND set to " + dndStatePhone);
+                } else {
+                    Log.d(TAG, "attempting to set DND but access not granted");
+                }
             }
 
         } else {
