@@ -8,6 +8,12 @@ This functionality is realized via an Accessibility Service, since I couldn't fi
 
 _**Tested on Pixel 3a XL paired with a Galaxy Watch 4 (40mm)**_
 
+<a href="https://youtu.be/rHy6kCBNOzA
+" target="_blank"><img src="http://img.youtube.com/vi/rHy6kCBNOzA/0.jpg" 
+alt="DNDSync demo" width="480" height="360" border="10" /></a>
+
+Video link: https://youtu.be/rHy6kCBNOzA
+
 ## 
 
 ## Setup
