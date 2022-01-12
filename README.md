@@ -6,6 +6,8 @@ If installed on phone and watch it enables either a 1-way sync or a 2-way sync, 
 I also added the functionality to automatically toggle Bedtime Mode. Use case: At night I put my phone into DND and I want my watch to automatically enable Bedtime Mode.
 This functionality is realized via an Accessibility Service, since I couldn't find how to enable it programmatically (any hints are highly appreciated).
 
+NOTE: For Bedtime mode toggle to work it is important that on the watch the Bedtime Mode button is on the first page of quick settings and the middle button in the first row!
+
 _**Tested on Pixel 3a XL paired with a Galaxy Watch 4 (40mm)**_
 
 <a href="https://youtu.be/rHy6kCBNOzA
