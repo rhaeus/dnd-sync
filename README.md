@@ -8,6 +8,8 @@ This functionality is realized via an Accessibility Service, since I couldn't fi
 
 NOTE: For Bedtime mode toggle to work it is important that on the watch the Bedtime Mode button is on the first page of quick settings and the middle button in the first row!
 
+Part of this project is inspired by [blundens](https://github.com/blunden/DoNotDisturbSync) work, please check their GitHub if you want to know more.
+
 _**Tested on Pixel 3a XL paired with a Galaxy Watch 4 (40mm)**_
 
 <a href="https://youtu.be/rHy6kCBNOzA
