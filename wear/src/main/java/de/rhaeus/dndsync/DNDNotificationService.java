@@ -27,8 +27,11 @@ public class DNDNotificationService extends NotificationListenerService {
     private static final String TAG = "DNDNotificationService";
     private static final String DND_SYNC_CAPABILITY_NAME = "dnd_sync";
     private static final String DND_SYNC_MESSAGE_PATH = "/wear-dnd-sync";
+    private static final long   DND_SYNC_MESSAGE_DELAY = 500;
 
     public static boolean running = false;
+
+    private static Thread syncThread = null;
 
     @Override
     public void onListenerConnected() {
@@ -67,11 +70,22 @@ public class DNDNotificationService extends NotificationListenerService {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         boolean syncDnd = prefs.getBoolean("dnd_sync_key", true);
         if(syncDnd) {
-            new Thread(new Runnable() {
+
+            // in case we receive another update in a short time, abort the last one
+            if (syncThread != null) {
+                syncThread.interrupt();
+            }
+            syncThread = new Thread(new Runnable() {
                 public void run() {
+                    try {
+                        Thread.sleep(DND_SYNC_MESSAGE_DELAY);
+                    } catch (InterruptedException e) {
+                        return;
+                    }
                     sendDNDSync(interruptionFilter);
                 }
-            }).start();
+            });
+            syncThread.start();
         }
     }
 
