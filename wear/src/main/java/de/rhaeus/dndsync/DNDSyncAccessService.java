@@ -80,7 +80,7 @@ public class DNDSyncAccessService extends AccessibilityService {
         final int top = (int)(height * .25);
         final int mid = (int)(height * .5);
         final int bottom = (int)(height * .75);
-        final int midX = displayMetrics.widthPixels / 2;
+        final int midX = displayMetrics.widthPixels / 3;
 
         path.moveTo(midX, 0);
         path.lineTo(midX, mid);
